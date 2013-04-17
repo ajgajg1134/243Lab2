@@ -89,4 +89,5 @@ public class Clock implements Puzzle {
 				return true;
 		}
 		return false;
+	}
 }
