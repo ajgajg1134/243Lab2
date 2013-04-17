@@ -16,7 +16,8 @@ import java.util.Queue;
  */
 
 /**
- * @author Andrew
+ * @author Andrew Glaude
+ * @author Mike Yachanin
  *
  */
 public class Solver {
