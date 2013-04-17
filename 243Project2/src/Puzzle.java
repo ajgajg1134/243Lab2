@@ -35,7 +35,7 @@ public interface Puzzle {
 	 * Get the starting config for the puzzle
 	 * @return the starting config
 	 */
-	public int getStart();
+	public ArrayList<Integer> getStart();
 
 	/**
 	*	Determines if a configuration is the goal or not

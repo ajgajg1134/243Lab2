@@ -76,8 +76,10 @@ public class Clock implements Puzzle {
 	}
 
 	@Override
-	public int getStart() {
-		return start;
+	public ArrayList<Integer> getStart() {
+		ArrayList<Integer> startLst = new ArrayList<Integer>();
+		startLst.add(start);
+		return startLst;
 	}
 
 	@Override

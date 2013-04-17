@@ -78,12 +78,6 @@ public class Water implements Puzzle, Comparable<Water>{
 				}
 			}
 		}
-		
-		
-		
-		
-		
-		
 		return newConfigs;
 	}
 	/**
