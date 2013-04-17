@@ -107,6 +107,17 @@ public class Water implements Puzzle, Comparable<Water>{
 		return 0;
 	}
 
+	@Override
+	public boolean isSolution(ArrayList<Integer> config)
+	{
+		for(int i : config)
+		{
+			if (i == goalWater)
+				return true;
+		}
+		return false;
+	}
+
 	/**
 	 * @param args
 	 */

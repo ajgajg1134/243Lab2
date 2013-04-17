@@ -80,4 +80,13 @@ public class Clock implements Puzzle {
 		return start;
 	}
 
+	@Override
+	public boolean isSolution(ArrayList<Integer> config)
+	{
+		for(int i : config)
+		{
+			if(i == goal)
+				return true;
+		}
+		return false;
 }

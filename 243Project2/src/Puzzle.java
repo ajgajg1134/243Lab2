@@ -36,4 +36,11 @@ public interface Puzzle {
 	 * @return the starting config
 	 */
 	public int getStart();
+
+	/**
+	*	Determines if a configuration is the goal or not
+	* @return true if the configuration is the goal
+	* @param an arraylist of ints that represents a config
+	*/
+	public boolean isSolution(ArrayList<Integer> config);
 }
