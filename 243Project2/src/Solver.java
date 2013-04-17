@@ -56,7 +56,7 @@ public class Solver {
 		
 		if(found)
 		{
-			current.add(p.getGoal());
+			current = p.getStart();
 		}
 		
 		while(queue.size() > 0 && !found)

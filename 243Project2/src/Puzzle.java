@@ -14,6 +14,7 @@ import java.util.ArrayList;
  *
  */
 public interface Puzzle {
+
 	/**
 	 * For an incoming config, generate and return all direct neighbors to this config.
 	 * @param config the incoming config

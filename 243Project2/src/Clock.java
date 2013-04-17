@@ -46,24 +46,32 @@ public class Clock implements Puzzle {
 		this.goal = goal;
 	}
 	@Override
-	public ArrayList<Integer> getNeighbors(ArrayList<Integer> configLst) {
-		ArrayList<Integer> neighborConfigs = new ArrayList<Integer>();
+	public ArrayList<ArrayList<Integer>> getNeighbors(ArrayList<Integer> configLst) {
+		ArrayList<ArrayList<Integer>> neighborConfigs = new ArrayList<ArrayList<Integer>>();
 		int config = configLst.get(0);
 		if (config + 1 > hours)
 		{
-			neighborConfigs.add(0);
+			ArrayList<Integer> temp = new ArrayList<Integer>();
+			temp.add(0);
+			neighborConfigs.add(temp);
 		}
 		else
 		{
-			neighborConfigs.add(config + 1);
+			ArrayList<Integer> temp = new ArrayList<Integer>();
+			temp.add(config + 1);
+			neighborConfigs.add(temp);
 		}
 		if(config - 1 <= 0)
 		{
-			neighborConfigs.add(hours);
+			ArrayList<Integer> temp2 = new ArrayList<Integer>();
+			temp2.add(hours);
+			neighborConfigs.add(temp2);
 		}
 		else
 		{
-			neighborConfigs.add(config - 1);
+			ArrayList<Integer> temp2 = new ArrayList<Integer>();
+			temp2.add(config - 1);
+			neighborConfigs.add(temp2);
 		}
 		
 		return neighborConfigs;

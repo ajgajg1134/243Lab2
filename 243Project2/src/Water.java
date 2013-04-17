@@ -21,14 +21,6 @@ public class Water implements Puzzle, Comparable<Water>{
 	private ArrayList<Integer> jugs;
 	
 	private int goalWater;
-
-	/**
-	 * @see Puzzle#getGoal()
-	 */
-	@Override
-	public int getGoal() {
-		return goalWater;
-	}
 	
 	public Water(ArrayList<Integer> jugCap, ArrayList<Integer> jugs, int goal)
 	{
