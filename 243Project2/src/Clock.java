@@ -52,9 +52,9 @@ public class Clock implements Puzzle {
 	}
 
 	@Override
-	public ArrayList<Integer> getNeighbors(int config) {
+	public ArrayList<Integer> getNeighbors(ArrayList<Integer> configLst) {
 		ArrayList<Integer> neighborConfigs = new ArrayList<Integer>();
-		
+		int config = configLst.get(0);
 		if (config + 1 > hours)
 		{
 			neighborConfigs.add(0);
