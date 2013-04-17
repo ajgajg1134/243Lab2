@@ -14,7 +14,7 @@ import java.util.*;
  * @author Andrew Glaude (ajg2440@rit.edu)
  *
  */
-public class Water implements Puzzle {
+public class Water implements Puzzle, Comparable<Water>{
 	//Capacity of jugs
 	private ArrayList<Integer> jugCapacity;
 	//Actual amount of water in each jug
@@ -68,7 +68,6 @@ public class Water implements Puzzle {
 			{
 				ArrayList<Integer> newTemp = new ArrayList<Integer>();
 				Collections.copy(newTemp, config);
-				
 				if(jugCapacity.get(i) > (newTemp.get(j) + newTemp.get(i)))
 				{
 					int oldI = newTemp.get(i);
@@ -87,7 +86,18 @@ public class Water implements Puzzle {
 		
 		return newConfigs;
 	}
-
+	/**
+	 * Compares if they are equal (To say one is greater than another doesn't make sense)
+	 * @param the Water object to compare to
+	 * @return 0 if equal 1 otherwise
+	 */
+	public int compareTo(Water w)
+	{
+		if(this.jugs.equals(w.jugs))
+			return 0;
+		return 1;
+	}
+	
 	/**
 	 * @see Puzzle#getStart()
 	 */
