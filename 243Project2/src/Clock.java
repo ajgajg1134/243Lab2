@@ -45,12 +45,6 @@ public class Clock implements Puzzle {
 		this.start = start;
 		this.goal = goal;
 	}
-
-	@Override
-	public int getGoal() {
-		return goal;
-	}
-
 	@Override
 	public ArrayList<Integer> getNeighbors(ArrayList<Integer> configLst) {
 		ArrayList<Integer> neighborConfigs = new ArrayList<Integer>();
