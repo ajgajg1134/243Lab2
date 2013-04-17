@@ -15,11 +15,6 @@ import java.util.ArrayList;
  */
 public interface Puzzle {
 	/**
-	 * Get the goal config for this puzzle
-	 * @return the goal config
-	 */
-	public int getGoal();
-	/**
 	 * For an incoming config, generate and return all direct neighbors to this config.
 	 * @param config the incoming config
 	 * @return the collection of neighbor configs
