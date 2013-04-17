@@ -1,0 +1,99 @@
+import java.util.ArrayList;
+
+/**File: Solver.java
+ * Version:
+ *  $Id: Solver.java,v 1.3 2013/04/03 14:10:14 ajg2440 Exp $
+ * Revisions:
+ *  $Log: Solver.java,v $
+ *  Revision 1.3  2013/04/03 14:10:14  ajg2440
+ *  Fixed error with no output if start = goal
+ *
+ *  Revision 1.2  2013/03/26 15:19:10  ajg2440
+ *  Added cvs tags
+ *
+ */
+
+/**
+ * @author Andrew
+ *
+ */
+public class Solver {
+	
+	public void Solve(Puzzle p)
+	{
+//		create an empty queue as an ArrayList<Integer>
+//		create an ArrayList<Integer> of one element from the starting config and enqueue it
+//		set found to whether the starting config is the goal config, or not
+//
+//		while the queue is not empty and not found:
+//		    dequeue the front element from the queue and set it to current
+//		    for each neighbor of the last element in current:
+//		        create an ArrayList<Integer> for the next config and make it a copy of current
+//		        append the neighbor to the next config
+//		        if the next config is the goal:
+//		            set current to the next config
+//		            set found to true
+//		            break out of the for loop
+//		        else:
+//		            enqueue the next config
+//		            
+//		if found:
+//		    current is the solution
+//		else:
+//		    there is no solution
+		
+		ArrayList<ArrayList<Integer>> queue = new ArrayList<ArrayList<Integer>>();
+		ArrayList<Integer> start = new ArrayList<Integer>();
+		start.add(p.getStart());
+		queue.add(start);
+		
+		boolean found = p.getStart() == p.getGoal();
+		
+		ArrayList<Integer> current = new ArrayList<Integer>();
+		
+		if(found)
+		{
+			current.add(p.getGoal());
+		}
+		
+		while(queue.size() > 0 && !found)
+		{
+			current = queue.remove(0);
+			for(Integer i : p.getNeighbors(current.get(current.size()-1)))
+			{
+				ArrayList<Integer> nextConfig = new ArrayList<Integer>();
+				for(Integer addMe : current)
+				{
+					nextConfig.add(addMe);
+				}
+				nextConfig.add(i);
+				if(i == p.getGoal())
+				{
+					current = nextConfig;
+					found = true;
+					break;
+				}
+				else
+				{
+					queue.add(nextConfig);
+				}
+			}
+		}
+		if(found)
+		{
+			//Go through and print steps to get somewhere.
+			for(int i = 0; i < current.size(); i++)
+			{
+				System.out.println("Step " + i + ": " + current.get(i));
+			}
+		}
+		else
+		{
+			//Nothing found?
+			System.out.println("Woah slow down there. Ain't no way you're getting a solution.");
+		}
+		
+
+	}
+
+}
