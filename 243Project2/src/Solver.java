@@ -47,10 +47,10 @@ public class Solver {
 		
 		Queue<ArrayList<Integer>> queue = new LinkedList<ArrayList<Integer>>();
 		ArrayList<Integer> start = new ArrayList<Integer>();
-		start.add(p.getStart());
+		start = p.getStart();
 		queue.add(start);
 		
-		boolean found = p.getStart() == p.getGoal();
+		boolean found = p.isSolution(p.getStart());
 		
 		ArrayList<Integer> current = new ArrayList<Integer>();
 		
@@ -64,21 +64,20 @@ public class Solver {
 			current = queue.poll();
 			for(ArrayList<Integer> i : p.getNeighbors(current))
 			{
-				ArrayList<Integer> nextConfig = new ArrayList<Integer>();
-				for(Integer addMe : current)
-				{
-					nextConfig.add(addMe);
-				}
+				Queue<ArrayList<Integer>> nextConfig = new LinkedList<ArrayList<Integer>>();
+
+				nextConfig.add(current);
+				
 				nextConfig.add(i);
-				if(i == p.getGoal())
+				if(p.isSolution(i))
 				{
-					current = nextConfig;
+					current = nextConfig.poll();
 					found = true;
 					break;
 				}
 				else
 				{
-					queue.add(nextConfig);
+					queue = nextConfig;
 				}
 			}
 		}
