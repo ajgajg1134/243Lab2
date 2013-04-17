@@ -96,9 +96,8 @@ public class Water implements Puzzle, Comparable<Water>{
 	 * @see Puzzle#getStart()
 	 */
 	@Override
-	public int getStart() {
-		// TODO Auto-generated method stub
-		return 0;
+	public ArrayList<Integer> getStart() {
+		return jugs;
 	}
 
 	@Override
