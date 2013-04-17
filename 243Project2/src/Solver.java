@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**File: Solver.java
  * Version:
@@ -42,7 +44,7 @@ public class Solver {
 //		else:
 //		    there is no solution
 		
-		ArrayList<ArrayList<Integer>> queue = new ArrayList<ArrayList<Integer>>();
+		Queue<ArrayList<Integer>> queue = new LinkedList<ArrayList<Integer>>();
 		ArrayList<Integer> start = new ArrayList<Integer>();
 		start.add(p.getStart());
 		queue.add(start);
@@ -58,8 +60,8 @@ public class Solver {
 		
 		while(queue.size() > 0 && !found)
 		{
-			current = queue.remove(0);
-			for(Integer i : p.getNeighbors(current.get(current.size()-1)))
+			current = queue.poll();
+			for(ArrayList<Integer> i : p.getNeighbors(current))
 			{
 				ArrayList<Integer> nextConfig = new ArrayList<Integer>();
 				for(Integer addMe : current)

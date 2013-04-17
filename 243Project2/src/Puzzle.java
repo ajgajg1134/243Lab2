@@ -24,7 +24,7 @@ public interface Puzzle {
 	 * @param config the incoming config
 	 * @return the collection of neighbor configs
 	 */
-	public ArrayList<Integer> getNeighbors(int config);
+	//public ArrayList<Integer> getNeighbors(int config);
 	/**
 	 * For an incoming config, generate and return all direct neighbors to this config.
 	 * @param config the incoming config
@@ -35,5 +35,5 @@ public interface Puzzle {
 	 * Get the starting config for the puzzle
 	 * @return the starting config
 	 */
-	public ArrayList<Integer> getStart();
+	public int getStart();
 }
