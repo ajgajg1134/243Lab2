@@ -60,7 +60,7 @@ public class Water implements Puzzle<ArrayList<Integer>>{
 			{
 				ArrayList<Integer> newTemp = new ArrayList<Integer>();
 				newTemp = (ArrayList<Integer>) config.clone();
-				if(jugCapacity.get(i) > (newTemp.get(j) + newTemp.get(i)))
+				if(jugCapacity.get(i) >= (newTemp.get(j) + newTemp.get(i)))
 				{
 					int oldI = newTemp.get(i);
 					int newI = newTemp.get(i) + newTemp.get(j);
@@ -68,6 +68,14 @@ public class Water implements Puzzle<ArrayList<Integer>>{
 					newTemp.set(j, (newTemp.get(j) - (newI - oldI)));
 					newConfigs.add(newTemp);
 				}
+				if(jugCapacity.get(i) != newTemp.get(i))
+                {
+                    int oldI = newTemp.get(i);
+                    int newI = jugCapacity.get(i);
+                    newTemp.set(i, newI);
+                    newTemp.set(j, (newTemp.get(j) - (newI - oldI)));
+                    newConfigs.add(newTemp);
+                }
 			}
 		}
 		return newConfigs;
