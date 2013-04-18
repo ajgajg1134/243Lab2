@@ -54,6 +54,8 @@ public class Solver <E> {
 		Queue<E> queue = new LinkedList<E>();
 		E start = p.getStart();
 		HashMap<E, E> predecessors = new HashMap<E,E>();
+		HashSet<E> seenDis = new HashSet<E>();
+
 		start = p.getStart();
 		queue.add(start);
 
@@ -73,9 +75,12 @@ public class Solver <E> {
 			current = queue.poll();
 			for(E i : p.getNeighbors(current))
 			{
-				if(predecessors.get(current) == null)
+				if(p.hasBeenVisited(i, predecessors))
 					break;
+				//seenDis.add(i);
+
 				predecessors.put(i, current);
+
 				if(p.isSolution(i))
 				{
 					current = i;
@@ -87,7 +92,7 @@ public class Solver <E> {
 					queue.add(i);
 				}
 			}
-			System.out.println("goin thru queue");
+			//System.out.println("goin thru queue");
 		}
 		System.out.println(predecessors);
 		if(found)
@@ -95,9 +100,10 @@ public class Solver <E> {
 			System.out.println("FOUND SHIT");
 			ArrayList<E> finalPath = new ArrayList<E>();
 			E next = current;
+			System.out.println("next: " + next);
 			while(!next.equals(p.getStart()))
 			{
-				System.out.println("Steppin: " + next);
+				//System.out.println("Steppin: " + next);
 				finalPath.add(next);
 				next = predecessors.get(next);
 			}

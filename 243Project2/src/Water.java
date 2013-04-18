@@ -60,7 +60,6 @@ public class Water implements Puzzle<ArrayList<Integer>>{
 			{
 				ArrayList<Integer> newTemp = new ArrayList<Integer>();
 				newTemp = (ArrayList<Integer>) config.clone();
-
 				if(jugCapacity.get(i) >= (newTemp.get(j) + newTemp.get(i)))
 				{
 					int oldI = newTemp.get(i);
@@ -69,6 +68,17 @@ public class Water implements Puzzle<ArrayList<Integer>>{
 					newTemp.set(j, (newTemp.get(j) - (newI - oldI)));
 					newConfigs.add(newTemp);
 				}
+				else
+				{
+					if(jugCapacity.get(i) != newTemp.get(i))
+	                {
+	                    int oldI = newTemp.get(i);
+	                    int newI = jugCapacity.get(i);
+	                    newTemp.set(i, newI);
+	                    newTemp.set(j, (newTemp.get(j) - (newI - oldI)));
+	                    newConfigs.add(newTemp);
+	                }
+            	}
 			}
 		}
 		return newConfigs;
@@ -119,6 +129,32 @@ public class Water implements Puzzle<ArrayList<Integer>>{
             solver.Solve(w);
         }
 
+	}
+	/**
+	* Determines if a config matches one in predecessors
+	* @param config is the config to check
+	* @param predecessors the hashmap to search in 
+	* @return true if it has been visited false otherwise
+	*/
+	public boolean hasBeenVisited(ArrayList<Integer> config, HashMap predecessors)
+	{
+		boolean hasBeenVisited = false;
+		Set<ArrayList<Integer>> s = predecessors.keySet();
+		for(ArrayList<Integer> key : s)
+		{
+			boolean isTrue = true;
+			for(int i = 0; i < key.size(); i++)
+			{
+				if(config.get(i) != key.get(i))
+				{
+					isTrue = false;
+					break;
+				}
+			}
+			if(isTrue)
+				return true;
+		}
+		return false;
 	}
 
 }

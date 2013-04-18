@@ -8,7 +8,7 @@
  *
  * 
  */
-import java.util.ArrayList;
+import java.util.*;
 /**
  * @author Andrew
  *
@@ -39,4 +39,6 @@ public interface Puzzle <E>{
 	* @param an arraylist of ints that represents a config
 	*/
 	public boolean isSolution(E config);
+
+	public boolean hasBeenVisited(E config, HashMap predecessors);
 }
