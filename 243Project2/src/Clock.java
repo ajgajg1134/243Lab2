@@ -80,10 +80,8 @@ public class Clock implements Puzzle<Integer>{
 		return config == goal;
 	}
 
-	public boolean hasBeenVisited(Integer config, HashMap predecessors)
+	public String toString(Integer config)
 	{
-		if(predecessors.get(config) == null)
-			return false;
-		return true;
+		return config + "";
 	}
 }

@@ -99,15 +99,11 @@ public class Solver <E> {
 					}
 				}
 			}
-			//System.out.println("goin thru queue");
 		}
-		System.out.println(predecessors);
 		if(found)
 		{
-			System.out.println("FOUND SHIT");
 			ArrayList<E> finalPath = new ArrayList<E>();
 			E next = current;
-			System.out.println("next: " + next);
 			while(!next.equals(p.getStart()))
 			{
 				//System.out.println("Steppin: " + next);
@@ -120,7 +116,7 @@ public class Solver <E> {
 
 			for(int i = 0; i < finalPath.size(); i++)
 			{
-				System.out.println("Step " + i + ": " + finalPath.get(i));
+				System.out.println("Step " + i + ": " + p.toString(finalPath.get(i)));
 			}
 		}
 		else

@@ -40,5 +40,10 @@ public interface Puzzle <E>{
 	*/
 	public boolean isSolution(E config);
 
-	public boolean hasBeenVisited(E config, HashMap predecessors);
+	/**
+	* Returns the string form of a config
+	* @return the string representing the current config
+	* @param the config to return the string form of
+	*/
+	public String toString(E config);
 }

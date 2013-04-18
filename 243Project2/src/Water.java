@@ -164,32 +164,14 @@ public class Water implements Puzzle<ArrayList<Integer>>{
             
             solver.Solve(w);
         }
-
 	}
-
-    /* (non-Javadoc)
-     * @see Puzzle#hasBeenVisited(java.lang.Object, java.util.HashMap)
-     */
-    @Override
-    public boolean hasBeenVisited(ArrayList<Integer> config,
-            HashMap predecessors) {
-    	boolean hasBeenVisited = false;
-		Set<ArrayList<Integer>> s = predecessors.keySet();
-		for(ArrayList<Integer> key : s)
+	public String toString(ArrayList<Integer> config)
+	{
+		String s = ""; 
+		for(Integer i : config)
 		{
-			boolean isTrue = true;
-			for(int i = 0; i < key.size(); i++)
-			{
-				if(config.get(i) != key.get(i))
-				{
-					isTrue = false;
-					break;
-				}
-			}
-			if(isTrue)
-				return true;
+			s += i + " ";
 		}
-		return false;
-    }
-
+		return s.substring(0, s.length()-1);
+	}
 }
