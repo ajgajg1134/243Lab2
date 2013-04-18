@@ -145,18 +145,18 @@ public class Water implements Puzzle<ArrayList<Integer>>{
                 jugCap.add(Integer.parseInt(args[i]));
                 jugs.add(0);
             }
-            
+            /*
             System.out.println((new Water(jugCap, jugs, goal)).getNeighbors(new ArrayList<Integer>(){{
                 add(5);
                 add(0);
                 }}
             ));
+            */
+            Water w = new Water(jugCap, jugs, goal);
             
-            //Water w = new Water(jugCap, jugs, goal);
+            Solver solver = new Solver();
             
-            //Solver solver = new Solver();
-            
-            //solver.Solve(w);
+            solver.Solve(w);
         }
 
 	}
