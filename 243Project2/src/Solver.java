@@ -75,7 +75,7 @@ public class Solver <E> {
 			current = queue.poll();
 			for(E i : p.getNeighbors(current))
 			{
-				if(p.hasBeenVisited(i, predecessors))
+				if(predecessors.get(current) == null)
 					break;
 				//seenDis.add(i);
 
