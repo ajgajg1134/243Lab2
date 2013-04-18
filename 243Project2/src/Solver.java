@@ -73,6 +73,8 @@ public class Solver <E> {
 			current = queue.poll();
 			for(E i : p.getNeighbors(current))
 			{
+				if(predecessors.get(current) == null)
+					break;
 				predecessors.put(i, current);
 				if(p.isSolution(i))
 				{
@@ -85,7 +87,7 @@ public class Solver <E> {
 					queue.add(i);
 				}
 			}
-			//System.out.println("goin thru queue");
+			System.out.println("goin thru queue");
 		}
 		System.out.println(predecessors);
 		if(found)
@@ -95,6 +97,7 @@ public class Solver <E> {
 			E next = current;
 			while(!next.equals(p.getStart()))
 			{
+				System.out.println("Steppin: " + next);
 				finalPath.add(next);
 				next = predecessors.get(next);
 			}

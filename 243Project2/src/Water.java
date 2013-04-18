@@ -56,11 +56,12 @@ public class Water implements Puzzle<ArrayList<Integer>>{
 		//Note pours from j to i
 		for(int i = 0; i < jugs.size(); i++)
 		{
-			for(int j = 0; j < jugs.size(); j++)
+			for(int j = 1; j < jugs.size(); j++)
 			{
 				ArrayList<Integer> newTemp = new ArrayList<Integer>();
 				newTemp = (ArrayList<Integer>) config.clone();
-				if(jugCapacity.get(i) > (newTemp.get(j) + newTemp.get(i)))
+
+				if(jugCapacity.get(i) >= (newTemp.get(j) + newTemp.get(i)))
 				{
 					int oldI = newTemp.get(i);
 					int newI = newTemp.get(i) + newTemp.get(j);
