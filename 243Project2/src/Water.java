@@ -35,13 +35,14 @@ public class Water implements Puzzle<ArrayList<Integer>>{
 	 */
 	public ArrayList<ArrayList<Integer>> getNeighbors(ArrayList<Integer> config) {
 		ArrayList<ArrayList<Integer>> newConfigs = new ArrayList<ArrayList<Integer>>();
-		
-		
+
+
 		//Adds configs where you fill a jug
 		for(int i = 0; i < jugs.size(); i++)
 		{
-			ArrayList<Integer> newTemp = (ArrayList<Integer>) config.clone();
-			
+			ArrayList<Integer> newTemp = new ArrayList<Integer>();
+			newTemp = (ArrayList<Integer>) config.clone();
+
 			if(newTemp.get(i) != jugCapacity.get(i))
 			{
 			    newTemp.set(i, jugCapacity.get(i));
@@ -51,7 +52,8 @@ public class Water implements Puzzle<ArrayList<Integer>>{
 		//Adds configs where you empty a jug
 		for(int i = 0; i < jugs.size(); i++)
 		{
-			ArrayList<Integer> newTemp = (ArrayList<Integer>) config.clone();
+			ArrayList<Integer> newTemp = new ArrayList<Integer>();
+			newTemp = (ArrayList<Integer>) config.clone();
 			if(newTemp.get(i) != 0){
 			    newTemp.set(i, 0);
 			    newConfigs.add(newTemp);
@@ -63,19 +65,20 @@ public class Water implements Puzzle<ArrayList<Integer>>{
 		{
 			for(int j = 0; j < jugs.size(); j++)
 			{
-				ArrayList<Integer> newTemp = (ArrayList<Integer>) config.clone();
-				int oldI = newTemp.get(i);
-				int newI = newTemp.get(i) + newTemp.get(j);
-				int getJ = newTemp.get(j);
+				ArrayList<Integer> newTemp = new ArrayList<Integer>();
+				newTemp = (ArrayList<Integer>) config.clone();
+				int oldI, newI;
 				boolean contains = false;
-				if(jugCapacity.get(i) >= (getJ + oldI))
+				if(jugCapacity.get(i) >= (newTemp.get(j) + newTemp.get(i)))
 				{
-					if(newI != 0 && getJ != 0){
+				    oldI = newTemp.get(i);
+					newI = newTemp.get(i) + newTemp.get(j);
+					if(newI != 0 && newTemp.get(j) != 0){
     					newTemp.set(i, newI);
-    					newTemp.set(j, (getJ - (newI - oldI)));
+    					newTemp.set(j, (newTemp.get(j) - (newI - oldI)));
                         for(ArrayList<Integer> temp: newConfigs)
                         {
-                            if(temp.get(i) == newI && temp.get(j) == (getJ - (newI - oldI))){
+                            if(temp.get(i) == newI && temp.get(j) == (newTemp.get(j) - (newI - oldI))){
                                 contains = true;
                             }
                         }
@@ -84,15 +87,17 @@ public class Water implements Puzzle<ArrayList<Integer>>{
                         }
 					}
 				}
-				
-				else if(jugCapacity.get(i) != oldI)
+
+				else if(jugCapacity.get(i) != newTemp.get(i))
                 {
+                    oldI = newTemp.get(i);
+                    newI = jugCapacity.get(i);
                     if(newI != 0){
                         newTemp.set(i, newI);
-                        newTemp.set(j, (getJ - (newI - oldI)));
+                        newTemp.set(j, (newTemp.get(j) - (newI - oldI)));
                         for(ArrayList<Integer> temp: newConfigs)
                         {
-                            if(temp.get(i) == newI && temp.get(j) == (getJ - (newI - oldI))){
+                            if(temp.get(i) == newI && temp.get(j) == (newTemp.get(j) - (newI - oldI))){
                                 contains = true;
                             }
                         }
