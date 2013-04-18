@@ -75,11 +75,14 @@ public class Solver <E> {
 			current = queue.poll();
 			for(E i : p.getNeighbors(current))
 			{
+				/*
 				if(predecessors.get(current) == null)
 					break;
+				*/
 				//seenDis.add(i);
 
-				predecessors.put(i, current);
+				if(!p.hasBeenVisited(i, predecessors))
+					predecessors.put(i, current);
 
 				if(p.isSolution(i))
 				{

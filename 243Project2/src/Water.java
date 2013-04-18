@@ -149,7 +149,7 @@ public class Water implements Puzzle<ArrayList<Integer>>{
                 jugCap.add(Integer.parseInt(args[i]));
                 jugs.add(0);
             }
-            
+
             /*
             System.out.println((new Water(jugCap, jugs, goal)).getNeighbors(new ArrayList<Integer>(){{
                 add(5);
@@ -173,8 +173,23 @@ public class Water implements Puzzle<ArrayList<Integer>>{
     @Override
     public boolean hasBeenVisited(ArrayList<Integer> config,
             HashMap predecessors) {
-        // TODO Auto-generated method stub
-        return false;
+    	boolean hasBeenVisited = false;
+		Set<ArrayList<Integer>> s = predecessors.keySet();
+		for(ArrayList<Integer> key : s)
+		{
+			boolean isTrue = true;
+			for(int i = 0; i < key.size(); i++)
+			{
+				if(config.get(i) != key.get(i))
+				{
+					isTrue = false;
+					break;
+				}
+			}
+			if(isTrue)
+				return true;
+		}
+		return false;
     }
 
 }
