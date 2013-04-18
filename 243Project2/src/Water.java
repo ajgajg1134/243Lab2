@@ -42,8 +42,12 @@ public class Water implements Puzzle<ArrayList<Integer>>{
 		{
 			ArrayList<Integer> newTemp = new ArrayList<Integer>();
 			newTemp = (ArrayList<Integer>) config.clone();
-			newTemp.set(i, jugCapacity.get(i));
-			newConfigs.add(newTemp);
+			
+			if(newTemp.get(i) != jugCapacity.get(i))
+			{
+			    newTemp.set(i, jugCapacity.get(i));
+			    newConfigs.add(newTemp);
+			}
 		}
 		//Adds configs where you empty a jug
 		for(int i = 0; i < jugs.size(); i++)
@@ -69,7 +73,7 @@ public class Water implements Puzzle<ArrayList<Integer>>{
 				{
 				    oldI = newTemp.get(i);
 					newI = newTemp.get(i) + newTemp.get(j);
-					if(newI != 0){
+					if(newI != 0 && newTemp.get(j) != 0){
     					newTemp.set(i, newI);
     					newTemp.set(j, (newTemp.get(j) - (newI - oldI)));
                         for(ArrayList<Integer> temp: newConfigs)
