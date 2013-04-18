@@ -49,8 +49,10 @@ public class Water implements Puzzle<ArrayList<Integer>>{
 		{
 			ArrayList<Integer> newTemp = new ArrayList<Integer>();
 			newTemp = (ArrayList<Integer>) config.clone();
-			newTemp.set(i, 0);
-			newConfigs.add(newTemp);
+			if(newTemp.get(i) != 0){
+			    newTemp.set(i, 0);
+			    newConfigs.add(newTemp);
+			}
 		}
 		//Adds configs where you pour from one to another
 		//Note pours from j to i
@@ -62,12 +64,15 @@ public class Water implements Puzzle<ArrayList<Integer>>{
 				newTemp = (ArrayList<Integer>) config.clone();
 				if(jugCapacity.get(i) >= (newTemp.get(j) + newTemp.get(i)))
 				{
-					int oldI = newTemp.get(i);
+				    int oldI = newTemp.get(i);
 					int newI = newTemp.get(i) + newTemp.get(j);
-					newTemp.set(i, newI);
-					newTemp.set(j, (newTemp.get(j) - (newI - oldI)));
-					newConfigs.add(newTemp);
+					if(newI != 0){
+    					newTemp.set(i, newI);
+    					newTemp.set(j, (newTemp.get(j) - (newI - oldI)));
+    					newConfigs.add(newTemp);
+					}
 				}
+				/*
 				if(jugCapacity.get(i) != newTemp.get(i))
                 {
                     int oldI = newTemp.get(i);
@@ -76,6 +81,7 @@ public class Water implements Puzzle<ArrayList<Integer>>{
                     newTemp.set(j, (newTemp.get(j) - (newI - oldI)));
                     newConfigs.add(newTemp);
                 }
+                */
 			}
 		}
 		return newConfigs;
@@ -119,11 +125,17 @@ public class Water implements Puzzle<ArrayList<Integer>>{
                 jugs.add(0);
             }
             
-            Water w = new Water(jugCap, jugs, goal);
+            System.out.println((new Water(jugCap, jugs, goal)).getNeighbors(new ArrayList<Integer>(){{
+                add(0);
+                add(0);
+                }}
+            ));
             
-            Solver solver = new Solver();
+            //Water w = new Water(jugCap, jugs, goal);
             
-            solver.Solve(w);
+            //Solver solver = new Solver();
+            
+            //solver.Solve(w);
         }
 
 	}
