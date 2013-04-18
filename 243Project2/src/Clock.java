@@ -7,7 +7,7 @@
  *  Added cvs tags
  *
  */
-import java.util.ArrayList;
+import java.util.*;
 /**
  * @author Andrew
  *
@@ -78,5 +78,12 @@ public class Clock implements Puzzle<Integer>{
 	public boolean isSolution(Integer config)
 	{
 		return config == goal;
+	}
+
+	public boolean hasBeenVisited(Integer config, HashMap predecessors)
+	{
+		if(predecessors.get(config) == null)
+			return false;
+		return true;
 	}
 }

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**File: Water.java
  * 
@@ -159,5 +160,15 @@ public class Water implements Puzzle<ArrayList<Integer>>{
         }
 
 	}
+
+    /* (non-Javadoc)
+     * @see Puzzle#hasBeenVisited(java.lang.Object, java.util.HashMap)
+     */
+    @Override
+    public boolean hasBeenVisited(ArrayList<Integer> config,
+            HashMap predecessors) {
+        // TODO Auto-generated method stub
+        return false;
+    }
 
 }
