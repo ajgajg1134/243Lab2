@@ -56,6 +56,8 @@ public class Solver <E> {
 		HashMap<E, E> predecessors = new HashMap<E,E>();
 		start = p.getStart();
 		queue.add(start);
+
+		predecessors.put(start, start);
 		
 		boolean found = p.isSolution(p.getStart());
 		
@@ -83,16 +85,21 @@ public class Solver <E> {
 					queue.add(i);
 				}
 			}
+			//System.out.println("goin thru queue");
 		}
+		System.out.println(predecessors);
 		if(found)
 		{
+			System.out.println("FOUND SHIT");
 			ArrayList<E> finalPath = new ArrayList<E>();
 			E next = current;
-			while(next != null)
+			while(!next.equals(p.getStart()))
 			{
 				finalPath.add(next);
 				next = predecessors.get(next);
 			}
+			finalPath.add(next);
+
 			Collections.reverse(finalPath);
 
 			for(int i = 0; i < finalPath.size(); i++)

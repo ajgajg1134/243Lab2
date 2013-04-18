@@ -14,7 +14,7 @@ import java.util.*;
  * @author Andrew Glaude (ajg2440@rit.edu)
  *
  */
-public class Water implements Puzzle{
+public class Water implements Puzzle<ArrayList<Integer>>{
 	//Capacity of jugs
 	private ArrayList<Integer> jugCapacity;
 	//Actual amount of water in each jug
@@ -40,7 +40,7 @@ public class Water implements Puzzle{
 		for(int i = 0; i < jugs.size(); i++)
 		{
 			ArrayList<Integer> newTemp = new ArrayList<Integer>();
-			Collections.copy(newTemp, config);
+			newTemp = (ArrayList<Integer>) config.clone();
 			newTemp.set(i, jugCapacity.get(i));
 			newConfigs.add(newTemp);
 		}
@@ -48,7 +48,7 @@ public class Water implements Puzzle{
 		for(int i = 0; i < jugs.size(); i++)
 		{
 			ArrayList<Integer> newTemp = new ArrayList<Integer>();
-			Collections.copy(newTemp, config);
+			newTemp = (ArrayList<Integer>) config.clone();
 			newTemp.set(i, 0);
 			newConfigs.add(newTemp);
 		}
@@ -59,7 +59,7 @@ public class Water implements Puzzle{
 			for(int j = 0; j < jugs.size(); j++)
 			{
 				ArrayList<Integer> newTemp = new ArrayList<Integer>();
-				Collections.copy(newTemp, config);
+				newTemp = (ArrayList<Integer>) config.clone();
 				if(jugCapacity.get(i) > (newTemp.get(j) + newTemp.get(i)))
 				{
 					int oldI = newTemp.get(i);
@@ -96,7 +96,27 @@ public class Water implements Puzzle{
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		if (args.length < 2)
+        {
+            //Error, not 3 args passed
+            System.out.println("Usage: java Water GoalWater BucketSizes");
+        }
+        else
+        {
+            ArrayList<Integer> jugs = new ArrayList<Integer>();
+            ArrayList<Integer> jugCap = new ArrayList<Integer>();
+            int goal = Integer.parseInt(args[0]);
+            for(int i = 1; i < args.length; i++){
+                jugCap.add(Integer.parseInt(args[i]));
+                jugs.add(0);
+            }
+            
+            Water w = new Water(jugCap, jugs, goal);
+            
+            Solver solver = new Solver();
+            
+            solver.Solve(w);
+        }
 
 	}
 
