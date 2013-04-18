@@ -73,6 +73,8 @@ public class Solver <E> {
 		while(queue.size() > 0 && !found)
 		{
 			current = queue.poll();
+
+
 			for(E i : p.getNeighbors(current))
 			{
 				/*
@@ -81,18 +83,20 @@ public class Solver <E> {
 				*/
 				//seenDis.add(i);
 
-				if(!p.hasBeenVisited(i, predecessors))
+				if(!predecessors.containsKey(i))
+				{
 					predecessors.put(i, current);
 
-				if(p.isSolution(i))
-				{
-					current = i;
-					found = true;
-					break;
-				}
-				else
-				{
-					queue.add(i);
+					if(p.isSolution(i))
+					{
+						current = i;
+						found = true;
+						break;
+					}
+					else
+					{
+						queue.add(i);
+					}
 				}
 			}
 			//System.out.println("goin thru queue");
