@@ -20,7 +20,7 @@ import java.util.Queue;
  * @author Mike Yachanin
  *
  */
-public class Solver {
+public class Solver<E> {
 	
 	public void Solve(Puzzle p)
 	{
@@ -45,14 +45,14 @@ public class Solver {
 //		else:
 //		    there is no solution
 		
-		Queue<ArrayList<Integer>> queue = new LinkedList<ArrayList<Integer>>();
-		ArrayList<Integer> start = new ArrayList<Integer>();
+		Queue<E> queue = new LinkedList<E>();
+		E start = new E();
 		start = p.getStart();
 		queue.add(start);
 		
 		boolean found = p.isSolution(p.getStart());
 		
-		ArrayList<Integer> current = new ArrayList<Integer>();
+		E current = new E();
 		
 		if(found)
 		{
@@ -62,9 +62,9 @@ public class Solver {
 		while(queue.size() > 0 && !found)
 		{
 			current = queue.poll();
-			for(ArrayList<Integer> i : p.getNeighbors(current))
+			for(ArrayList<E> i : p.getNeighbors(current))
 			{
-				Queue<ArrayList<Integer>> nextConfig = new LinkedList<ArrayList<Integer>>();
+				ArrayList<E> nextConfig = new ArrayList<E>();
 
 				nextConfig.add(current);
 				
