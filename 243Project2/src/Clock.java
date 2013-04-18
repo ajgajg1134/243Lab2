@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author Andrew
  *
  */
-public class Clock implements Puzzle {
+public class Clock implements Puzzle<Integer>{
 	
 	private int goal, start, hours;
 
@@ -46,52 +46,37 @@ public class Clock implements Puzzle {
 		this.goal = goal;
 	}
 	@Override
-	public ArrayList<ArrayList<Integer>> getNeighbors(ArrayList<Integer> configLst) {
-		ArrayList<ArrayList<Integer>> neighborConfigs = new ArrayList<ArrayList<Integer>>();
-		int config = configLst.get(0);
+	public ArrayList<Integer> getNeighbors(Integer config) {
+		ArrayList<Integer> neighborConfigs = new ArrayList<Integer>();
+
 		if (config + 1 > hours)
 		{
-			ArrayList<Integer> temp = new ArrayList<Integer>();
-			temp.add(0);
-			neighborConfigs.add(temp);
+			neighborConfigs.add(0);
 		}
 		else
 		{
-			ArrayList<Integer> temp = new ArrayList<Integer>();
-			temp.add(config + 1);
-			neighborConfigs.add(temp);
+			neighborConfigs.add(config + 1);
 		}
 		if(config - 1 <= 0)
 		{
-			ArrayList<Integer> temp2 = new ArrayList<Integer>();
-			temp2.add(hours);
-			neighborConfigs.add(temp2);
+			neighborConfigs.add(hours);
 		}
 		else
 		{
-			ArrayList<Integer> temp2 = new ArrayList<Integer>();
-			temp2.add(config - 1);
-			neighborConfigs.add(temp2);
+			neighborConfigs.add(config - 1);
 		}
-		
+
 		return neighborConfigs;
 	}
 
 	@Override
-	public ArrayList<Integer> getStart() {
-		ArrayList<Integer> startLst = new ArrayList<Integer>();
-		startLst.add(start);
-		return startLst;
+	public Integer getStart() {
+		return start;
 	}
 
 	@Override
-	public boolean isSolution(ArrayList<Integer> config)
+	public boolean isSolution(Integer config)
 	{
-		for(int i : config)
-		{
-			if(i == goal)
-				return true;
-		}
-		return false;
+		return config == goal;
 	}
 }

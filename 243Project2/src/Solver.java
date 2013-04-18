@@ -20,9 +20,15 @@ import java.util.Queue;
  * @author Mike Yachanin
  *
  */
-public class Solver<E> {
+import java.util.*;
+public class Solver <E> {
+
+	public Solver()
+	{
+
+	}
 	
-	public void Solve(Puzzle p)
+	public void Solve(Puzzle<E> p)
 	{
 //		create an empty queue as an ArrayList<Integer>
 //		create an ArrayList<Integer> of one element from the starting config and enqueue it
@@ -46,13 +52,14 @@ public class Solver<E> {
 //		    there is no solution
 		
 		Queue<E> queue = new LinkedList<E>();
-		E start = new E();
+		E start = p.getStart();
+		HashMap<E, E> predecessors = new HashMap<E,E>();
 		start = p.getStart();
 		queue.add(start);
 		
 		boolean found = p.isSolution(p.getStart());
 		
-		E current = new E();
+		E current = start;
 		
 		if(found)
 		{
@@ -62,37 +69,41 @@ public class Solver<E> {
 		while(queue.size() > 0 && !found)
 		{
 			current = queue.poll();
-			for(ArrayList<E> i : p.getNeighbors(current))
+			for(E i : p.getNeighbors(current))
 			{
-				ArrayList<E> nextConfig = new ArrayList<E>();
-
-				nextConfig.add(current);
-				
-				nextConfig.add(i);
+				predecessors.put(i, current);
 				if(p.isSolution(i))
 				{
-					current = nextConfig.poll();
+					current = i;
 					found = true;
 					break;
 				}
 				else
 				{
-					queue = nextConfig;
+					queue.add(i);
 				}
 			}
 		}
 		if(found)
 		{
-			//Go through and print steps to get somewhere.
-			for(int i = 0; i < current.size(); i++)
+			ArrayList<E> finalPath = new ArrayList<E>();
+			E next = current;
+			while(next != null)
 			{
-				System.out.println("Step " + i + ": " + current.get(i));
+				finalPath.add(next);
+				next = predecessors.get(next);
+			}
+			Collections.reverse(finalPath);
+
+			for(int i = 0; i < finalPath.size(); i++)
+			{
+				System.out.println("Step " + i + ": " + finalPath.get(i));
 			}
 		}
 		else
 		{
 			//Nothing found?
-			System.out.println("Woah slow down there. Ain't no way you're getting a solution.");
+			System.out.println("No solution.");
 		}
 		
 

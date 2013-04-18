@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @author Andrew
  *
  */
-public interface Puzzle {
+public interface Puzzle <E>{
 
 	/**
 	 * For an incoming config, generate and return all direct neighbors to this config.
@@ -26,17 +26,17 @@ public interface Puzzle {
 	 * @param config the incoming config
 	 * @return the collection of neighbor configs
 	 */
-	public ArrayList<ArrayList<Integer>> getNeighbors(ArrayList<Integer> config);
+	public ArrayList<E> getNeighbors(E config);
 	/**
 	 * Get the starting config for the puzzle
 	 * @return the starting config
 	 */
-	public ArrayList<Integer> getStart();
+	public E getStart();
 
 	/**
 	*	Determines if a configuration is the goal or not
 	* @return true if the configuration is the goal
 	* @param an arraylist of ints that represents a config
 	*/
-	public boolean isSolution(ArrayList<Integer> config);
+	public boolean isSolution(E config);
 }
